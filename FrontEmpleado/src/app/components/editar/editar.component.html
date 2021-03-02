@@ -1,0 +1,128 @@
+<div class="card mt-3 col-sm-8 " style="margin:auto;">
+  <div class="card-header bg-primary text-white">
+    <h5 class="card-text">Editar Empleado</h5>
+  </div>
+  <div class="card-body">
+    <form [formGroup]="miFormulario" (ngSubmit)="guardarCambios()" novalidate="">
+      <div class="mb-3 row">
+        <label class="col-sm-3 col-form-label">Nombres</label>
+        <div class="col-sm-9">
+          <input class="form-control" type="text" formControlName="nombres" placeholder="Nombres Completos">
+
+          <div style="color:red;"
+            *ngIf="miFormulario.controls['nombres'].invalid && (miFormulario.controls['nombres'].dirty || miFormulario.controls['nombres'].touched)">
+            <div *ngIf="miFormulario.controls['nombres'].errors?.required">
+              El nombre es necesario
+            </div>
+            <div *ngIf="miFormulario.controls['nombres'].errors?.minlength">
+              Por lo menos {{miFormulario.controls['nombres'].errors.minlength.requiredLength}} caracteres
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="mb-3 row">
+        <label class="col-sm-3 col-form-label">Apellido Paterno</label>
+        <div class="col-sm-9">
+          <input type="text" formControlName="ape_paterno" class="form-control" placeholder="Apellido Paterno">
+          <div style="color:red;"
+            *ngIf="miFormulario.controls['ape_paterno'].invalid && (miFormulario.controls['ape_paterno'].dirty || miFormulario.controls['ape_paterno'].touched)">
+            <div *ngIf="miFormulario.controls['ape_paterno'].errors?.required">
+              El apellido paterno es necesario
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="mb-3 row">
+        <label class="col-sm-3 col-form-label">Apellido Materno</label>
+        <div class="col-sm-9">
+          <input type="text" formControlName="ape_materno" class="form-control" placeholder="Apellido Materno">
+          <div style="color:red;"
+            *ngIf="miFormulario.controls['ape_materno'].invalid && (miFormulario.controls['ape_materno'].dirty || miFormulario.controls['ape_materno'].touched)">
+            <div *ngIf="miFormulario.controls['ape_materno'].errors.required">
+              El apellido materno es requerido
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="mb-3 row">
+        <label class="col-sm-3 col-form-label">Genero</label>
+        <div class="col-sm-9">
+          <select class="form-control" formControlName="genero">
+            <option value="M">Masculino</option>
+            <option value="F">Femenino</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="mb-3 row">
+        <label class="col-sm-3 col-form-label">Fecha Nacimiento</label>
+        <div class="col-sm-9">
+          <input type="date" formControlName="fecha_nacimiento" class="form-control">
+
+          <div style="color:red;"
+            *ngIf="miFormulario.controls['fecha_nacimiento'].invalid && (miFormulario.controls['fecha_nacimiento'].dirty || miFormulario.controls['fecha_nacimiento'].touched)">
+            <div *ngIf="miFormulario.controls['fecha_nacimiento'].errors.required">
+              La fecha de nacimiento es requerido
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="mb-3 row">
+        <label class="col-sm-3 col-form-label">Correo</label>
+        <div class="col-sm-9">
+          <input type="text" formControlName="correo" class="form-control" placeholder="Correo Electronico">
+
+          <div style="color:red;"
+            *ngIf="miFormulario.controls['correo'].invalid && (miFormulario.controls['correo'].dirty || miFormulario.controls['correo'].touched)">
+            <div *ngIf="miFormulario.controls['correo'].errors.required">
+              El correo electronico es requerido
+            </div>
+            <div *ngIf="miFormulario.controls['correo'].errors.pattern" style="color:red;">
+              Formato no valido
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="mb-3 row">
+        <label class="col-sm-3 col-form-label">Sueldo</label>
+        <div class="col-sm-9">
+          <input type="text" formControlName="sueldo" class="form-control" placeholder="Sueldo">
+
+          <div style="color:red;"
+          *ngIf="miFormulario.controls['sueldo'].invalid && (miFormulario.controls['sueldo'].dirty || miFormulario.controls['sueldo'].touched)">
+          <div *ngIf="miFormulario.controls['sueldo'].errors.required">
+            El sueldo es requerido
+          </div>
+
+        </div>
+
+        </div>
+      </div>
+
+      <button [disabled]="!miFormulario.valid" type="submit" class="btn btn-primary"
+        style="margin-right: 5px;">Guardar</button>
+      <button type="reset" class="btn btn-danger">Nuevo</button>
+    </form>
+  </div>
+
+</div>
+
+
+<!--
+  <pre>
+  <code>{{miFormulario.value  | json}}</code>
+</pre>
+
+<pre>
+  <code>{{empleado | json}}</code>
+</pre>
+
+ -->

@@ -1,0 +1,49 @@
+<button [routerLink]="['/nuevo']" class="btn btn-success"><i class="fa fa-plus"></i> Nuevo</button>
+<br>
+<div class="table-responsive">
+  <div *ngIf="empleados ">
+    <table class="table table-bordered table-striped mt-3">
+      <thead class=" bg-primary text-white">
+        <tr>
+          <th>Codigo</th>
+          <th>Nombres</th>
+          <th>Apellido</th>
+          <th>Genero</th>
+          <th>Fecha Nacimiento</th>
+          <th>Fecha Ingreso</th>
+          <th>Correo</th>
+          <th>Sueldo</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr  *ngFor="let e of empleados, index as i">
+          <td>{{e.id_empleado}}</td>
+          <td>{{e.nombres}}</td>
+          <td>{{e.ape_paterno}} {{e.ape_materno}}</td>
+          <td>{{e.genero =='F'?'Femenino':'Masculino'}}</td>
+          <td>{{e.fecha_nacimiento}}</td>
+          <td>{{e.fecha_registro}}</td>
+          <td>{{e.correo}}</td>
+          <td>{{e.sueldo}}</td>
+          <td>
+            <button [routerLink]="['/editar' , e.id_empleado]" class="btn btn-info" style="margin-right: 5px;">
+              <i class="fa fa-edit" aria-hidden="true"></i>
+            </button>
+
+            <button class="btn btn-danger" (click)="ConfEliminar(e.id_empleado)">
+              <i class="fa fa-trash" aria-hidden="true"></i>
+            </button>
+          </td>
+        </tr>
+
+        <tr *ngIf="empleados[0] == null" >
+          <td colspan="9" class="text-center">No se encontraron registros</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+
+</div>
+
